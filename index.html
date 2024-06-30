@@ -21,8 +21,8 @@
 
 
     </div>
-    </div> 
-    <h1>Transaction Area</h1>
+    <div>
+    <h1 >Transaction Area</h1>
     </div>
     <div id="transaction-area">
         <div class="row">
@@ -35,7 +35,7 @@
             <div class="col-md-4 ">
                 <div class="withdraw status">
                     <h5>Withdraw</h5>
-                    <h2>$00</h2>
+                    <h2>$ <span id="currentWithdraw">00</span></h2>
                 </div>
             </div>
             <div class="col-md-4 ">
@@ -107,16 +107,24 @@
         // withdraw button event handler
         const withdrawBtn = document.getElementById("addWithdraw");
         withdrawBtn.addEventListener("click",function(){
+            const withdrawNumber = getInputNumber("withdrawAmount");
             // const withdrawAmount =document.getElementById("withdrawAmount").value;
             // const withdrawNumber =parseFloat(withdrawAmount);
-            const withdrawNumber = getInputNumber("withdrawAmount";)
-            console.log(withdrawNumber);
+            
+            // console.log(withdrawNumber);
+            updateSpanText("currentWithdraw", withdrawNumber);
+            updateSpanText("currentBalance", -1* withdrawNumber);
+            document.getElementById("withdrawAmount").value ="";
 
         } )
         function getInputNumber(id){
-            const withdrawAmount =document.getElementById(id).value;
-            const withdrawNumber =parseFloat(withdrawAmount);
-            return withdrawNumber;
+            // const withdrawAmount =document.getElementById(id).value;
+            const amount = document.getElementById(id).value;
+            // const withdrawNumber =parseFloat(withdrawAmount);
+            // const withdrawNumber = parseFloat(amount);
+            const amountNumber = parseFloat(amount);
+            return amountNumber;
+            // return withdrawNumber;
         }
         function updateSpanText(id, depositNumber){
             const current = document.getElementById(id).innerText;
